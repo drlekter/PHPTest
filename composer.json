@@ -40,7 +40,8 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget",
             "php app/console assets:install --symlink",
-            "php app/console avanzu:admin:fetch-vendor"
+            "php app/console avanzu:admin:fetch-vendor",
+            "php app/console doctrine:schema:update --force"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
