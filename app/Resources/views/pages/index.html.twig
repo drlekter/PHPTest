@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Scrivania{% endblock %}
+{% block page_subtitle %}{% endblock %}
+
+{% block page_content %}
+    {% include 'layouts/table.html.twig' with {'title': 'Gli ultimi 5 prodotti'} %}
+{% endblock %}
+

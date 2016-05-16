@@ -1,0 +1,60 @@
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">{{ title }}</h3>
+        <div class="box-tools pull-right">
+            {% include 'layouts/search.html.twig' %}
+        </div>
+    </div>
+    <div class="box-body">
+        <div class="table-responsive">
+            <table class="table no-margin">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Prodotto</th>
+                    <th class="hidden-xs">Creato il</th>
+                    <th class="hidden-xs hidden-sm">Operazioni</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in products %}
+                    <tr>
+                        <td width="15%">
+                            <a href="{{ path('_edit', { id: item.id }) }}">
+                                {% if item.image.filename is defined %}
+                                    {% set urlParam = [item.image.webPath, item.image.filename]|join('/') %}
+                                    <img src="{{ urlParam | imagine_filter('my_thumb') }}" />
+                                {% else %}
+                                    <img src="{{ '/media/default-placeholder.png' | imagine_filter('my_thumb') }}" />
+                                {% endif %}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ path('_edit', { id: item.id }) }}">
+                                {{ item.title }}
+                            </a>
+                        </td>
+                        <td class="hidden-xs">{{ item.created|date("m/d/Y") }}</td>
+                        <td class="hidden-xs hidden-sm">
+                            <div class="item-actions">
+                                <a href="{{ path('_edit', { id: item.id }) }}" class="btn btn-sm btn-primary">
+                                    <i class="fa fa-edit"></i> Modifica
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" align="center">Nessun prodotto trovato</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="box-footer clearfix text-center">
+        {% if products.paginatorOptions is defined %}
+            {{ knp_pagination_render(products) }}
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Modifica Prodotto{% endblock %}
+{% block page_subtitle %}{% endblock %}
+
+{% block page_content %}
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Modifica: {{ product.title }}</h3>
+            <div class="box-tools pull-right">
+                {{ include('layouts/deleteForm.html.twig', {
+                    form: delete_form,
+                    button_label: 'Cancella prodotto',
+                    button_css: 'btn btn-block btn-danger btn-xs',
+                    show_confirmation: true,
+                }, with_context = false) }}
+            </div>
+        </div>
+
+        <div class="box-body">
+            {{ form_start(edit_form) }}
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        {{ form_row(edit_form.title) }}
+
+                        {{ form_row(edit_form.description) }}
+
+                        {{ form_row(edit_form.tagString) }}
+
+                        {{ form_row(edit_form.uploaded_image) }}
+                    </div>
+
+                    <div class="col-sm-6">
+                        {% if product.image.filename is defined %}
+                            {% set urlParam = [product.image.webPath, product.image.filename]|join('/') %}
+                            <img src="/{{ urlParam }}" class="col-sm-12" />
+                        {% else %}
+                            <img src="{{ '/media/default-placeholder.png' }}" class="col-sm-12" />
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="box-footer">
+                <input type="submit" value="Salva" class="btn btn-primary" />
+            </div>
+            {{ form_end(edit_form) }}
+        </div>
+    </div>
+{% endblock %}

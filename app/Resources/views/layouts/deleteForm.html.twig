@@ -1,0 +1,9 @@
+{% if show_confirmation|default(false) %}
+    {% set attr = {'id': 'deleteConfirm'} %}
+    {{ include('layouts/delete_product_confirmation.html.twig') }}
+{% endif %}
+
+{{ form_start(form, { attr: attr|default({}) }) }}
+    {{ form_widget(form) }}
+    <input type="button" value="{{ button_label }}" class="{{ button_css }}" id="deleteButton" data-toggle="modal" data-target="#confirmDelete" />
+{{ form_end(form) }}

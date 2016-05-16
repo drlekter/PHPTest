@@ -1,0 +1,56 @@
+{% extends 'AvanzuAdminThemeBundle:layout:base-layout.html.twig' %}
+
+{% block title %}ProntoPro.it{% endblock %}
+
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery.tagsinput.min.css') }}">
+{% endblock %}
+
+
+{% block javascripts_inline %}
+    <script src="{{ asset('assets/js/jquery.tagsinput.min.js') }}"></script>
+    <script>
+
+        $('#btnYes').click(function(){
+            $('#deleteConfirm').submit();
+        });
+
+        $('#product_tagString').tagsInput({
+            'width':'100%',
+            'height': '50px'
+        });
+    </script>
+{% endblock %}
+
+{% block avanzu_admin_footer %}
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs"></div>
+        <strong>Copyright &copy; 2016 <a href="http://www.prontopro.it">Pronto Pro</a>.</strong> All rights reserved.
+    </footer>
+{% endblock %}
+
+{% block avanzu_sidebar %}
+    <div class="main-sidebar">
+        <div class="sidebar">
+            <ul class="sidebar-menu">
+                <li class="header">Menu principale</li>
+                <li>
+                    <a href="{{ path('_homepage') }}">
+                        <i class="fa fa-dashboard"></i> <span>Scrivania</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('_new') }}">
+                        <i class="fa fa-plus-square"></i> <span>Crea Prodotto</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('_list') }}">
+                        <i class="fa fa-list"></i> <span>Elenco Prodotti</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

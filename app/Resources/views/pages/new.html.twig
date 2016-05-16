@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}Crea Prodotto{% endblock %}
+{% block page_subtitle %}{% endblock %}
+
+{% block page_content %}
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Inserisci un nuovo prodotto</h3>
+        </div>
+        {{ form_start(form) }}
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        {{ form_row(form.title) }}
+
+                        {{ form_row(form.description) }}
+                    </div>
+
+                    <div class="col-sm-6">
+                        {{ form_row(form.uploaded_image) }}
+
+                        {{ form_row(form.tagString) }}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="box-footer">
+                <input type="submit" value="Salva" class="btn btn-primary" />
+                {{ form_widget(form.saveAndCreateNew, { label: 'Salva e crea nuovo', attr: { class: 'btn btn-primary' } }) }}
+            </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
